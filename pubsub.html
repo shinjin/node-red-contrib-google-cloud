@@ -27,22 +27,12 @@ limitations under the License.
         <label for="node-input-subscription"><i class="fa fa-bars"></i> Subscription</label>
         <input type="text" id="node-input-subscription">
     </div>
-    <div class="form-row">
-        <label for="node-input-ackDeadlineSeconds"><i class="fa fa-hourglass-start"></i> Deadline</label>
-        <input type="number" id="node-input-ackDeadlineSeconds" step="1" placeholder="Maximum time in seconds before redelivery...">
-    </div>
-    <div class="form-row">
-        <label for="node-input-encoding"><i class="fa fa-file-text-o"></i> Encoding</label>
-        <input type="text" id="node-input-encoding" placeholder="Payload encoding...">
-    </div>
-    <div class="form-row">
-        <label for="node-input-interval"><i class="fa fa-history"></i> Interval</label>
-        <input type="number" id="node-input-interval" step="1" placeholder="Polling interval in milliseconds...">
-    </div>
+<!--
     <div class="form-row">
         <label for="node-input-timeout"><i class="fa fa-hourglass-start"></i> Timeout</label>
         <input type="number" id="node-input-timeout" step="1" placeholder="HTTP request timeout in milliseconds...">
     </div>
+ -->
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name">
@@ -54,18 +44,10 @@ limitations under the License.
     <p>Sends a message with the properties:</p>
     <ul>
         <li><code>msg.payload</code></li>
-        <li><code>msg.time</code></li>
-        <li><code>msg.project</code></li>
         <li><code>msg.topic</code></li>
-        <li><code>msg.subscription</code></li>
-        <li><code>msg.resource</code></li>
     </ul>
     <p><code>msg.payload</code> is the data from the Pub/Sub message.</p>
-    <p><code>msg.time</code> is the timestamp from the Pub/Sub message.</p>
-    <p><code>msg.project</code> is the Google Cloud project.</p>
     <p><code>msg.topic</code> is the topic in the Google Cloud project.</p>
-    <p><code>msg.subscription</code> is the subscription in the Google Cloud project.</p>
-    <p><code>msg.resource</code> is the relative path for the subscription.</p>
 </script>
 
 <script type="text/javascript">
@@ -75,10 +57,7 @@ RED.nodes.registerType("google-cloud-pubsub in", {
         account: { type: "google-cloud-credentials", required: true },
         topic: { required: true },
         subscription: { required: false },
-        ackDeadlineSeconds: { required: false },
-        encoding: { required: false },
-        interval: { required: false },
-        timeout: { required: false },
+        // timeout: { required: false },
         name: { value: "", required: false }
     },
     inputs: 0,
@@ -113,10 +92,10 @@ RED.nodes.registerType("google-cloud-pubsub in", {
     <p>Receives a message with the properties:</p>
     <ul>
         <li><code>msg.payload</code></li>
-        <li><code>msg.time</code></li>
+        <li><code>msg.topic</code></li>
     </ul>
     <p><code>msg.payload</code> is the data for the Pub/Sub message.</p>
-    <p><code>msg.time</code> is the timestamp for the Pub/Sub message.</p>
+    <p><code>msg.topic</code> is the topic in the Google Cloud project.</p>
 </script>
 
 <script type="text/javascript">
